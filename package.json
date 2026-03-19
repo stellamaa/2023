@@ -1,9 +1,10 @@
 {
-  "name": "codegrid-waabi-scroll-animation",
+  "name": "2023",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "vite build"
   },
   "keywords": [],
   "author": "",
