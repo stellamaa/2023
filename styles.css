@@ -1,6 +1,6 @@
 @font-face {
   font-family: "ABC Diatype Mono";
-  src: url("/assets/fonts/ABC-Diatype-Mono.ttf") format("truetype");
+  src: url("/assets/fonts/Paragon-Regular.otf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -197,10 +197,31 @@ section {
   padding-top: 100vh;
   padding-bottom: 70vh;
   display: flex;
- margin:auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   text-align: center;
   max-width: 200px;
+  margin: 0 auto;
   position: relative;
+  min-height: 220vh;
+}
+
+.poem2-pin {
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.poem2-body {
+  position: relative;
+  z-index: 2;
+}
+
+.poem2-trail {
+  margin-top: 0;
+  z-index: 1;
+  will-change: transform;
 }
 
 .poem3 {

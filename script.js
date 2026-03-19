@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const insertDots = (base) => {
         if (!base) return base;
         const dots = " ";
-        const idx = (Math.random() * (base.length + 0.2)) | 0;
+        const idx = (Math.random() * (base.length + 0.4)) | 0;
         return `${base.slice(0, idx)}${dots}${base.slice(idx)}`;
       };
       const jumbleOnce = (base) => {
@@ -284,4 +284,33 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     });
   });
+
+  const poem2Pin = document.querySelector(".poem2-pin");
+  const poem2Trail = document.querySelector(".poem2-trail");
+  if (poem2Pin && poem2Trail) {
+    const trailStartY = 700;
+    gsap.set(poem2Trail, { y: trailStartY });
+
+    ScrollTrigger.create({
+      trigger: ".poem2-pin",
+      start: "top top",
+      end: "+=280%",
+      pin: true,
+      pinSpacing: true,
+      scrub: 1,
+      onUpdate: (self) => {
+        const p = self.progress;
+        if (p < 0.25) {
+          gsap.set(poem2Trail, { y: trailStartY });
+        } else if (p < 0.65) {
+          const meetProgress = (p - 0.25) / 0.4;
+          gsap.set(poem2Trail, {
+            y: trailStartY * (1 - meetProgress),
+          });
+        } else {
+          gsap.set(poem2Trail, { y: 0 });
+        }
+      },
+    });
+  }
 });
