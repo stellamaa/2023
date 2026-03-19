@@ -266,6 +266,43 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
+  const aboutSection = document.querySelector(".about");
+  if (aboutSection) {
+    const overlay = document.createElement("div");
+    overlay.className = "about-overlay";
+    overlay.setAttribute("aria-hidden", "true");
+    const overlayImg = document.createElement("img");
+    overlayImg.alt = "";
+    overlay.appendChild(overlayImg);
+    document.body.appendChild(overlay);
+
+    const open = (src) => {
+      overlayImg.src = src;
+      overlay.classList.add("is-open");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    };
+    const close = () => {
+      overlay.classList.remove("is-open");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    };
+
+    aboutSection.addEventListener("click", (e) => {
+      const img = e.target.closest(".about-imgs-col .img img");
+      if (!img) return;
+      e.stopPropagation();
+      const src = img.currentSrc || img.src;
+      open(src);
+    });
+
+    overlay.addEventListener("click", () => close());
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && overlay.classList.contains("is-open")) close();
+    });
+  }
+
   const aboutImgCols = [
     { id: "#about-imgs-col-1", y: -500 },
     { id: "#about-imgs-col-2", y: -250 },

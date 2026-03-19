@@ -1,11 +1,13 @@
 {
   "name": "2023",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build"
-  },
+  "main": "script.js",
+ "scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d dist",
+  "dev": "vite",
+  "build": "vite build"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -14,5 +16,9 @@
     "gsap": "^3.14.2",
     "lenis": "^1.3.18",
     "vite": "^7.3.1"
-  }
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  },
+  "homepage": "https://github.com/stellamaa/2023"
 }
