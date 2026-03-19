@@ -1,0 +1,283 @@
+@font-face {
+  font-family: "ABC Diatype Mono";
+  src: url("/fonts/ABC-Diatype-Mono.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "ABC Diatype Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  background-color: #FBF9F3;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+p {
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+section {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+}
+
+.hero-img,
+.hero-header,
+.hero-copy {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity, width, height;
+}
+
+.hero-img {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.hero-header {
+  padding: 4rem;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  z-index: 10;
+  position: absolute;
+}
+
+.hero-header > p {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-header-echo {
+  position: absolute;
+  bottom: 4.8rem;
+  right: 4rem;
+  transform: translateX(59.75rem) translateY(-0.1rem) scale(1.08);
+  transform-origin: bottom right;
+  opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
+  width: calc(100% - 8rem);
+  filter: blur(1.4px);
+}
+
+.hero-header-echo p {
+  font-size: 0.9rem;
+}
+
+.hero-copy {
+  padding: 4rem;
+  color: #fff;
+  display: flex;
+  align-items: flex-end;
+}
+
+.about,
+.outro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.about {
+  margin-top: 275svh;
+}
+
+.about-images {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4rem;
+}
+
+.about-imgs-col {
+  position: relative;
+  height: 125%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  will-change: transform;
+}
+
+.about-imgs-col .img {
+  width: 125px;
+  height: 125px;
+  overflow: hidden;
+}
+
+#about-imgs-col-1 {
+  transform: translateY(1000px);
+}
+
+#about-imgs-col-2 {
+  transform: translateX(-225px) translateY(500px);
+}
+
+#about-imgs-col-3 {
+  transform: translateX(225px) translateY(500px);
+}
+
+#about-imgs-col-4 {
+  transform: translateY(1000px);
+}
+
+.about-header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  color: red;
+  font-size: 0.8rem;
+}
+
+.outro {
+  background-color: #FBF9F3;
+  position: relative;
+  overflow: hidden;
+  height: 200vh;
+}
+
+.outro h3 {
+  width: 35%;
+}
+
+.outro > p {
+  position: relative;
+  z-index: 2;
+  visibility: hidden;
+}
+
+.outro-knit {
+  position: absolute;
+  inset: -60%;
+  z-index: 1;
+  pointer-events: none;
+  display: grid;
+  align-content: start;
+  justify-content: start;
+  opacity: 0.9;
+}
+
+.outro-knit .knit-word {
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
+  user-select: none;
+  will-change: contents;
+  letter-spacing: 0;
+}
+
+.outro p {
+  display: hidden;
+}
+.poem2 {
+  padding-top: 100vh;
+  padding-bottom: 70vh;
+  display: flex;
+ margin:auto;
+  text-align: center;
+  max-width: 200px;
+  position: relative;
+}
+
+.poem3 {
+  padding-top: 70vh;
+  padding-bottom: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.poem3-content {
+  max-width: 360px;
+}
+
+.poem3-trail {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: hidden;
+}
+
+.poem3-trail .poem-frag {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  color: rgba(10, 10, 10, 0.92);
+  will-change: transform, opacity;
+  user-select: none;
+}
+
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 3rem;
+  }
+
+  h3 {
+    font-size: 2rem;
+  }
+
+  .hero {
+    z-index: 2;
+  }
+
+  .hero-header,
+  .hero-copy {
+    padding: 2rem;
+  }
+
+  .hero-header h1,
+  .hero-copy h3 {
+    width: 100%;
+  }
+
+  .about-header,
+  .outro h3 {
+    width: 100%;
+    padding: 2rem;
+  }
+
+  .about-images {
+    padding: 2rem;
+  }
+
+  .about-imgs-col .img {
+    width: 75px;
+    height: 75px;
+    opacity: 0.25;
+    filter: saturate(0);
+  }
+
+  #about-imgs-col-2,
+  #about-imgs-col-3 {
+    transform: translateX(0px) translateY(500px);
+  }
+}
