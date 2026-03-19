@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const rect = outro.getBoundingClientRect();
       // Overscan so the wall stays filled across the full 200vh scroll.
-      const cols = Math.ceil((rect.width * 2.4) / cellW);
+      const cols = Math.ceil((rect.width * 2.5) / cellW);
       const rows = Math.ceil((rect.height * 2.4) / cellH);
 
       knitEl.style.gridTemplateColumns = `repeat(${cols}, ${cellW}px)`;
@@ -65,13 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const insertDots = (base) => {
         if (!base) return base;
         const dots = " ";
-        const idx = (Math.random() * (base.length + 0.4)) | 0;
+        const idx = (Math.random() * (base.length + 2)) | 0;
         return `${base.slice(0, idx)}${dots}${base.slice(idx)}`;
       };
       const jumbleOnce = (base) => {
         if (!base) return base;
         const chars = base.split("");
-        const edits = 1 + ((Math.random() * 2) | 0); // 1-3 edits
+        const edits = 1 + ((Math.random() * 0) | 0); // 1-3 edits
         for (let i = 0; i < edits; i += 1) {
           const idx = (Math.random() * chars.length) | 0;
           const ch = chars[idx];
@@ -253,15 +253,9 @@ document.addEventListener("DOMContentLoaded", () => {
         150,
         heroImgProgress,
       );
-      const heroImgBorderRadius = gsap.utils.interpolate(
-        0,
-        0,
-        heroImgProgress,
-      );
       gsap.set(".hero-img", {
         width: heroImgWidth,
         height: heroImgHeight,
-        borderRadius: heroImgBorderRadius,
       });
     },
   });
@@ -280,7 +274,9 @@ document.addEventListener("DOMContentLoaded", () => {
       overlayImg.src = src;
       overlay.classList.add("is-open");
       overlay.setAttribute("aria-hidden", "false");
+      overlayImg.style.objectFit = "contain";
       document.body.style.overflow = "hidden";
+      overlayImg.style.backgroundColor = "white";
     };
     const close = () => {
       overlay.classList.remove("is-open");
@@ -289,7 +285,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     aboutSection.addEventListener("click", (e) => {
-      const img = e.target.closest(".about-imgs-col .img img");
+      const container = e.target.closest(".about-imgs-col .img");
+      if (!container) return;
+      const img = container.querySelector("img");
       if (!img) return;
       e.stopPropagation();
       const src = img.currentSrc || img.src;
@@ -331,7 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ScrollTrigger.create({
       trigger: ".poem2-pin",
       start: "top top",
-      end: "+=280%",
+      end: "+=320%",
       pin: true,
       pinSpacing: true,
       scrub: 1,

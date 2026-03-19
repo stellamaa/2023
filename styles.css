@@ -176,13 +176,14 @@ section {
   width: 40%;
   color: red;
   font-size: 0.8rem;
+  pointer-events: none;
 }
 
 .outro {
   background-color: #FBF9F3;
   position: relative;
   overflow: hidden;
-  height: 200vh;
+  height: 400vh;
 }
 
 .outro h3 {
@@ -230,7 +231,7 @@ section {
   max-width: 200px;
   margin: 0 auto;
   position: relative;
-  min-height: 220vh;
+  min-height: 420vh;
 }
 
 .poem2-pin {
@@ -245,7 +246,7 @@ section {
 }
 
 .poem2-trail {
-  margin-top: 0;
+  padding-top: 7px;
   z-index: 1;
   will-change: transform;
 }
@@ -284,6 +285,11 @@ section {
 }
 
 @media (max-width: 1000px) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
   h1 {
     font-size: 3rem;
   }
@@ -294,11 +300,25 @@ section {
 
   .hero {
     z-index: 2;
+    overflow: hidden;
+  }
+
+  .hero-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .hero-header,
   .hero-copy {
     padding: 2rem;
+  }
+
+  .hero-header > p,
+  .hero-copy p {
+    font-size: 0.65rem;
+    max-width: 100%;
   }
 
   .hero-header h1,
@@ -319,12 +339,23 @@ section {
   .about-imgs-col .img {
     width: 75px;
     height: 75px;
-    opacity: 0.25;
-    filter: saturate(0);
   }
 
   #about-imgs-col-2,
   #about-imgs-col-3 {
     transform: translateX(0px) translateY(500px);
+  }
+
+  .poem2 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100%;
+  }
+
+  .poem2-pin,
+  .poem2-body p,
+  .poem2-trail p {
+    max-width: 100%;
+    font-size: 0.65rem;
   }
 }
