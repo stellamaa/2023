@@ -19,6 +19,19 @@ body {
   
   
 }
+
+.site-title {
+  position: absolute;
+  top: 1rem;
+  padding-left: 1rem;
+  z-index: 10000;
+  color: #797979;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
 .noise-overlay {
   position: fixed;
   top: 0px;
@@ -206,6 +219,7 @@ section {
   color: red;
   font-size: 0.8rem;
   pointer-events: none;
+  z-index: 10;
 }
 
 .outro {
