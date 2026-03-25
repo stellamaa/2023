@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       knitEl.appendChild(probe);
       const probeRect = probe.getBoundingClientRect();
       // Dense packing: minimal padding, no gaps.
-      const cellW = Math.max(20, Math.ceil(probeRect.width));
+      const cellW = Math.max(2, Math.ceil(probeRect.width));
       const cellH = Math.max(12, Math.ceil(probeRect.height));
       probe.remove();
 
