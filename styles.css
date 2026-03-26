@@ -81,7 +81,7 @@ section {
 .hero-header,
 .hero-copy {
   position: absolute;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   will-change: transform, opacity, width, height;
 }
@@ -331,6 +331,7 @@ section {
   html,
   body {
     overflow-x: hidden;
+    margin:auto;
   }
 
   h1 {
