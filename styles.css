@@ -294,6 +294,74 @@ section {
   will-change: transform;
 }
 
+.muzak {
+  position: relative;
+  width: 100%;
+  height: 260vh;
+}
+
+.muzak-inner {
+  position: relative;
+  height: 260vh;
+  width: 100%;
+}
+
+.muzak-float {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.muzak-float.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.muzak-btn {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  z-index: 1;
+  border: 1px solid rgba(0, 0, 0, 0.9);
+      color: black;
+      background: transparent;
+  padding: 0.6rem 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.muzak-btn[aria-pressed="true"] {
+  background:transparent;
+  color: rgba(0, 0, 0, 0.95);
+}
+
+/* Different “stop” positions around the page */
+.muzak-a {
+  top: 1vh;
+  left: 1vw;
+}
+.muzak-b {
+  top: 1vh;
+  right: 1vw;
+}
+.muzak-c {
+  bottom: 1vh;
+  left: 1vw;
+}
+.muzak-d {
+  bottom: 1vh;
+  right: 1vw;
+}
+
 .poem3 {
   padding-top: 70vh;
   padding-bottom: 70vh;
@@ -327,6 +395,10 @@ section {
   user-select: none;
 }
 
+.poem2-music button {
+  
+  color: black;
+}
 @media (max-width: 1000px) {
   html,
   body {
@@ -401,5 +473,28 @@ section {
   .poem2-trail p {
     max-width: 100%;
     font-size: 0.65rem;
+  }
+
+  .muzak {
+    height: 220vh;
+  }
+  .muzak-inner {
+    height: 220vh;
+  }
+  .muzak-btn {
+    font-size: 0.65rem;
+    padding: 0.55rem 0.8rem;
+  }
+  .muzak-a {
+    margin-left: 6vw;
+  }
+  .muzak-b {
+    margin-left: 48vw;
+  }
+  .muzak-c {
+    margin-left: 10vw;
+  }
+  .muzak-d {
+    margin-left: 52vw;
   }
 }

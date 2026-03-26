@@ -326,26 +326,94 @@ document.addEventListener("DOMContentLoaded", () => {
     const trailStartY = 700;
     gsap.set(poem2Trail, { y: trailStartY });
 
+    // Keep poem2 pinned while the page continues through the audio section.
     ScrollTrigger.create({
       trigger: ".poem2-pin",
       start: "top top",
-      end: "+=320%",
+      endTrigger: ".muzak",
+      end: "bottom bottom",
       pin: true,
       pinSpacing: true,
-      scrub: 1,
-      onUpdate: (self) => {
-        const p = self.progress;
-        if (p < 0.25) {
-          gsap.set(poem2Trail, { y: trailStartY });
-        } else if (p < 0.65) {
-          const meetProgress = (p - 0.25) / 0.4;
-          gsap.set(poem2Trail, {
-            y: trailStartY * (1 - meetProgress),
-          });
-        } else {
-          gsap.set(poem2Trail, { y: 0 });
-        }
+    });
+
+    // Bring the trail up to meet the last line early, then keep it at the top.
+    gsap.to(poem2Trail, {
+      y: 0,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".poem2-pin",
+        start: "top top",
+        end: "+=140%",
+        scrub: 1,
       },
+    });
+  }
+
+  // Show the muzak controls as an overlay while scrolling the muzak section.
+  const muzakSection = document.querySelector(".muzak");
+  const muzakFloat = document.querySelector(".muzak-float");
+  if (muzakSection && muzakFloat) {
+    ScrollTrigger.create({
+      trigger: muzakSection,
+      start: "top bottom",
+      end: "bottom top",
+      onEnter: () => muzakFloat.classList.add("is-active"),
+      onEnterBack: () => muzakFloat.classList.add("is-active"),
+      onLeave: () => muzakFloat.classList.remove("is-active"),
+      onLeaveBack: () => muzakFloat.classList.remove("is-active"),
+    });
+  }
+
+  // Audio buttons that can play simultaneously, looped.
+  const muzakButtons = Array.from(document.querySelectorAll(".muzak-btn"));
+  if (muzakButtons.length) {
+    // Served from `public/muzak/*` so it works in production builds too.
+    const muzakSrcByKey = {
+      1: "/muzak/1.mp3",
+      2: "/muzak/2.mp3",
+      3: "/muzak/3.mp3",
+      4: "/muzak/4.mp3",
+    };
+
+    const players = new Map();
+
+    const getPlayer = (btn) => {
+      const key = btn.getAttribute("data-key");
+      const src = key ? muzakSrcByKey[key] : null;
+      if (!src) return null;
+      if (players.has(src)) return players.get(src);
+      const a = new Audio(src);
+      a.loop = true;
+      a.preload = "auto";
+      a.playsInline = true;
+      players.set(src, a);
+      return a;
+    };
+
+    const setUI = (btn, isPlaying) => {
+      btn.setAttribute("aria-pressed", isPlaying ? "true" : "false");
+      btn.textContent = isPlaying ? "pause" : "play";
+    };
+
+    muzakButtons.forEach((btn) => {
+      setUI(btn, false);
+      btn.addEventListener("click", async () => {
+        const player = getPlayer(btn);
+        if (!player) return;
+
+        if (player.paused) {
+          try {
+            await player.play();
+            setUI(btn, true);
+          } catch {
+            // Autoplay restrictions or decode issues: keep UI as play.
+            setUI(btn, false);
+          }
+        } else {
+          player.pause();
+          setUI(btn, false);
+        }
+      });
     });
   }
 });
